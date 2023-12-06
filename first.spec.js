@@ -2,6 +2,7 @@ import {
   beforeAll,
   beforeEach,
   afterAll,
+  afterEach,
   test,
   it,
   run,
@@ -23,6 +24,10 @@ test("first test case", () => {
 
 it("second test case", () => {
   console.log("second test case");
+});
+
+afterEach(() => {
+  console.log("afterEach");
 });
 
 afterAll(() => {

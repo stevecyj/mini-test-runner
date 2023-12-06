@@ -11,6 +11,7 @@ const onlys = [];
 const beforeAlls = [];
 const beforeEachs = [];
 const afterAlls = [];
+const afterEachs = [];
 
 // test 收集測試腳本
 export function test(desc, callback) {
@@ -39,6 +40,11 @@ export function afterAll(callback) {
   afterAlls.push(callback);
 }
 
+// afterEach 收集測試腳本
+export function afterEach(callback) {
+  afterEachs.push(callback);
+}
+
 // 先接收一個值，再給一個期望的值
 export function expect(received) {
   return {
@@ -58,8 +64,10 @@ export function run() {
     callback();
   }
 
+  // test.only
   const suit = onlys.length > 0 ? onlys : tests;
   for (const test of suit) {
+    // 執行 beforeEach
     for (const callback of beforeEachs) {
       callback();
     }
@@ -69,6 +77,11 @@ export function run() {
       console.log(`ok: ${test.desc} success`);
     } catch (error) {
       console.log(`fail: ${test.desc} failed`);
+    }
+
+    // 執行 afterEach
+    for (const callback of afterEachs) {
+      callback();
     }
   }
 
