@@ -8,7 +8,7 @@ import {
   run,
   expect,
   describe,
-} from "./index.js";
+} from "./core.js";
 
 beforeAll(() => {
   console.log("beforeAll");
