@@ -9,4 +9,8 @@ it("second test case", () => {
   console.log("second test case");
 });
 
+test.only("only test case", () => {
+  console.log("only test case");
+});
+
 run();
