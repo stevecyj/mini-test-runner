@@ -9,6 +9,7 @@
 const tests = [];
 const onlys = [];
 const beforeAlls = [];
+const beforeEachs = [];
 
 // test 收集測試腳本
 export function test(desc, callback) {
@@ -25,6 +26,11 @@ export const it = test;
 // beforeAll 收集測試腳本
 export function beforeAll(callback) {
   beforeAlls.push(callback);
+}
+
+// beforeEach 收集測試腳本
+export function beforeEach(callback) {
+  beforeEachs.push(callback);
 }
 
 // 先接收一個值，再給一個期望的值
@@ -48,6 +54,10 @@ export function run() {
 
   const suit = onlys.length > 0 ? onlys : tests;
   for (const test of suit) {
+    for (const callback of beforeEachs) {
+      callback();
+    }
+
     try {
       test.callback();
       console.log(`ok: ${test.desc} success`);

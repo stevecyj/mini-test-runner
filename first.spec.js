@@ -1,7 +1,11 @@
-import { beforeAll, test, it, run, expect } from "./index.js";
+import { beforeAll, beforeEach, test, it, run, expect } from "./index.js";
 
 beforeAll(() => {
   console.log("beforeAll");
+});
+
+beforeEach(() => {
+  console.log("beforeEach");
 });
 
 test("first test case", () => {
