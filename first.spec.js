@@ -7,6 +7,7 @@ import {
   it,
   run,
   expect,
+  describe,
 } from "./index.js";
 
 beforeAll(() => {
@@ -28,6 +29,13 @@ it("second test case", () => {
 
 afterEach(() => {
   console.log("afterEach");
+});
+
+describe("sub", () => {
+  test("sub first test case", () => {
+    console.log("sub first test case");
+    expect(2).toBe(2);
+  });
 });
 
 afterAll(() => {

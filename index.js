@@ -57,6 +57,10 @@ export function expect(received) {
   };
 }
 
+export function describe(desc, callback) {
+  callback();
+}
+
 // 執行
 export function run() {
   // 執行 beforeAll
