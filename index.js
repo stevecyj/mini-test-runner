@@ -8,6 +8,7 @@
 
 const tests = [];
 const onlys = [];
+const beforeAlls = [];
 
 // test 收集測試腳本
 export function test(desc, callback) {
@@ -20,6 +21,11 @@ test.only = function (desc, callback) {
 
 // it 是 test 的別名
 export const it = test;
+
+// beforeAll 收集測試腳本
+export function beforeAll(callback) {
+  beforeAlls.push(callback);
+}
 
 // 先接收一個值，再給一個期望的值
 export function expect(received) {
@@ -35,6 +41,11 @@ export function expect(received) {
 
 // 執行
 export function run() {
+  // 執行 beforeAll
+  for (const callback of beforeAlls) {
+    callback();
+  }
+
   const suit = onlys.length > 0 ? onlys : tests;
   for (const test of suit) {
     try {
