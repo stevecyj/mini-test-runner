@@ -10,6 +10,7 @@ const tests = [];
 const onlys = [];
 const beforeAlls = [];
 const beforeEachs = [];
+const afterAlls = [];
 
 // test 收集測試腳本
 export function test(desc, callback) {
@@ -31,6 +32,11 @@ export function beforeAll(callback) {
 // beforeEach 收集測試腳本
 export function beforeEach(callback) {
   beforeEachs.push(callback);
+}
+
+// afterAll 收集測試腳本
+export function afterAll(callback) {
+  afterAlls.push(callback);
 }
 
 // 先接收一個值，再給一個期望的值
@@ -64,5 +70,10 @@ export function run() {
     } catch (error) {
       console.log(`fail: ${test.desc} failed`);
     }
+  }
+
+  // 執行 afterAll
+  for (const callback of afterAlls) {
+    callback();
   }
 }

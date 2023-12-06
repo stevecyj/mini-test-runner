@@ -1,4 +1,12 @@
-import { beforeAll, beforeEach, test, it, run, expect } from "./index.js";
+import {
+  beforeAll,
+  beforeEach,
+  afterAll,
+  test,
+  it,
+  run,
+  expect,
+} from "./index.js";
 
 beforeAll(() => {
   console.log("beforeAll");
@@ -17,6 +25,9 @@ it("second test case", () => {
   console.log("second test case");
 });
 
+afterAll(() => {
+  console.log("afterAll");
+});
 // test.only("only test case", () => {
 //   console.log("only test case");
 // });
