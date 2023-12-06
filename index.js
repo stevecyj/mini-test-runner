@@ -26,7 +26,6 @@ export function expect(received) {
   return {
     toBe(expected) {
       if (received === expected) {
-        console.log("pass");
       } else {
         throw new Error(`fail received: ${received} expected: ${expected}`);
       }
@@ -38,6 +37,11 @@ export function expect(received) {
 export function run() {
   const suit = onlys.length > 0 ? onlys : tests;
   for (const test of suit) {
-    test.callback();
+    try {
+      test.callback();
+      console.log(`ok: ${test.desc} success`);
+    } catch (error) {
+      console.log(`fail: ${test.desc} failed`);
+    }
   }
 }
